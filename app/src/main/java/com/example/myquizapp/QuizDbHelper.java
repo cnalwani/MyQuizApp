@@ -52,6 +52,8 @@ public class QuizDbHelper extends SQLiteOpenHelper {
         addQuestion(q4);
         Question q5 = new Question("A is correct", "A", "B", "C", 1);
         addQuestion(q5);
+        Question q6 = new Question("A is correct", "A", "B", "C", 1);
+        addQuestion(q6);
     }
 
     private void addQuestion(Question question){
