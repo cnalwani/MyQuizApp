@@ -25,10 +25,11 @@
         android:layout_height="wrap_content"
         android:text="00:30"
         android:textSize="40sp"
-        android:id="@+id/text_view_countdown"
+        android:id="@+id/countdown"
         android:layout_alignParentRight="true" />
 
     <TextView
+        android:id="@+id/QuTextViw"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Here will be question to ask?"

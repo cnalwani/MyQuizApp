@@ -16,6 +16,10 @@ public class Question {
         this.answerNr = answerNr;
     }
 
+    public Question() {
+
+    }
+
     public String getQuestion() {
         return question;
     }
