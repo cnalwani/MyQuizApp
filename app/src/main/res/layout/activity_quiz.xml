@@ -45,19 +45,19 @@
         android:layout_height="wrap_content">
 
             <RadioButton
-                android:id="@+id/radio_but1"
+                android:id="@+id/radBut1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Option 1"/>
 
             <RadioButton
-                android:id="@+id/radio_bu2"
+                android:id="@+id/radBut2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Option 2"/>
 
             <RadioButton
-                android:id="@+id/radio_bu3"
+                android:id="@+id/radBut3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Oprion 3"/>
