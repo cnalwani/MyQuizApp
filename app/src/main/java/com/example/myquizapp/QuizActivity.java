@@ -1,8 +1,8 @@
 package com.example.myquizapp;
 
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.res.ColorStateList;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -10,14 +10,14 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
  public class QuizActivity extends AppCompatActivity {
 
-    TextView txtViwQuestion, txtViwScore, txtViwQUSCount, txtViwCountDown;
+    TextView txtViwQuestion, txtViwScore;
+    TextView txtViwQUSCount, txtViwCountDown;
     RadioGroup rbGroup;
     RadioButton rb1, rb2, rb3;
     Button buttonConfmNext;
@@ -30,7 +30,6 @@ import java.util.List;
 
     private int score;
     private boolean answered;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,7 +60,7 @@ import java.util.List;
             public void onClick(View view) {
                 if(!answered) {
                     if(rb1.isChecked() || rb2.isChecked() || rb3.isChecked()) {
-                        checkAnswer();
+                        //checkAnswer();
                     }
                     else
                     {
@@ -71,7 +70,6 @@ import java.util.List;
             }
         });
     }
-
     private void showNextQuestion(){
         rb1.setTextColor(textColorDefaultRb);
         rb2.setTextColor(textColorDefaultRb);
@@ -94,17 +92,41 @@ import java.util.List;
             finishQuiz();
         }
     }
-    private void checkAnswer(){
-        answered = true;
-        RadioButton rbsSelected = findViewById(rbGroup.getCheckedRadioButtonId());
-        int answerNr = rbGroup.indexOfChild(rbsSelected) + 1;
+     private void checkAnswer(){
+         answered = true;
+         RadioButton rbsSelected = findViewById(rbGroup.getCheckedRadioButtonId());
+         int answerNr = rbGroup.indexOfChild(rbsSelected) + 1;
 
-        if(answerNr == currentQuestion.getAnswerNr()){
-            score++;
-            txtViwScore.setText("Score " + score);
-        }
-    }
-    private void finishQuiz() {
+         if(answerNr == currentQuestion.getAnswerNr()){
+             score++;
+             txtViwScore.setText("Score " + score);
+         }
+         showSolution();
+     }
+     private void showSolution(){
+         rb1.setTextColor(Color.RED);
+         rb2.setTextColor(Color.RED);
+         rb3.setTextColor(Color.RED);
+
+         switch(currentQuestion.getAnswerNr()){
+             case 1:
+                 rb1.setTextColor(Color.GREEN);
+                 break;
+             case 2:
+                 rb2.setTextColor(Color.GREEN);
+                 break;
+             case 3:
+                 rb3.setTextColor(Color.GREEN);
+                 break;
+         }
+         if(questionCounter < questionCountTotal){
+             buttonConfmNext.setText("Next");
+         }
+         else{
+             buttonConfmNext.setText("Finish");
+         }
+     }
+     private void finishQuiz() {
         finish();
-    }
-}
+     }
+ }
