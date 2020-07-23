@@ -57,41 +57,43 @@ import java.util.List;
 
         buttonConfmNext.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                if(!answered) {
-                    if(rb1.isChecked() || rb2.isChecked() || rb3.isChecked()) {
-                        //checkAnswer();
-                    }
-                    else
-                    {
+             public void onClick(View view) {
+                if (!answered) {
+                    if (rb1.isChecked() || rb2.isChecked() || rb3.isChecked()) {
+                        checkAnswer();
+                    } else {
                         Toast.makeText(QuizActivity.this, "please select the answer", Toast.LENGTH_SHORT).show();
                     }
+                } else {
+                    showNextQuestion();
                 }
             }
         });
     }
-    private void showNextQuestion(){
-        rb1.setTextColor(textColorDefaultRb);
-        rb2.setTextColor(textColorDefaultRb);
-        rb3.setTextColor(textColorDefaultRb);
-        rbGroup.clearCheck();
+     private void showNextQuestion(){
 
-        if(questionCounter < questionCountTotal) {
-            currentQuestion = questionList.get(questionCounter);
+         rb1.setTextColor(textColorDefaultRb);
+         rb2.setTextColor(textColorDefaultRb);
+         rb3.setTextColor(textColorDefaultRb);
+         rbGroup.clearCheck();
 
-            txtViwQuestion.setText(currentQuestion.getQuestion());
-            rb1.setText(currentQuestion.getOption1());
-            rb2.setText(currentQuestion.getOption2());
-            rb3.setText(currentQuestion.getOption3());
+         if(questionCounter < questionCountTotal) {
+             currentQuestion = questionList.get(questionCounter);
 
-            questionCounter++;
-            txtViwQUSCount.setText("Question :" + questionCounter + "/"  + questionCountTotal);
-            answered = false;
-            buttonConfmNext.setText("confirm");
-        }else{
-            finishQuiz();
-        }
-    }
+             txtViwQuestion.setText(currentQuestion.getQuestion());
+             rb1.setText(currentQuestion.getOption1());
+             rb2.setText(currentQuestion.getOption2());
+             rb3.setText(currentQuestion.getOption3());
+
+             questionCounter++;
+             txtViwQUSCount.setText("Question :" + questionCounter + "/"  + questionCountTotal);
+             answered = false;
+             buttonConfmNext.setText("confirm");
+
+         }else{
+             finishQuiz();
+         }
+     }
      private void checkAnswer(){
          answered = true;
          RadioButton rbsSelected = findViewById(rbGroup.getCheckedRadioButtonId());
@@ -104,6 +106,7 @@ import java.util.List;
          showSolution();
      }
      private void showSolution(){
+
          rb1.setTextColor(Color.RED);
          rb2.setTextColor(Color.RED);
          rb3.setTextColor(Color.RED);
@@ -111,12 +114,15 @@ import java.util.List;
          switch(currentQuestion.getAnswerNr()){
              case 1:
                  rb1.setTextColor(Color.GREEN);
+                 txtViwQuestion.setText("Answer 1 is correct");
                  break;
              case 2:
                  rb2.setTextColor(Color.GREEN);
+                 txtViwQuestion.setText("Answer 2 is correct");
                  break;
              case 3:
                  rb3.setTextColor(Color.GREEN);
+                 txtViwQuestion.setText("Answer 3 is correct");
                  break;
          }
          if(questionCounter < questionCountTotal){
@@ -127,6 +133,6 @@ import java.util.List;
          }
      }
      private void finishQuiz() {
-        finish();
+       // finish();
      }
  }

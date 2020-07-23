@@ -8,6 +8,8 @@ import android.widget.Button;
 
 public class MainActivity extends AppCompatActivity {
 
+    private static final int REQUEST_CODE_QUIZ = 1;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -17,16 +19,12 @@ public class MainActivity extends AppCompatActivity {
         statQuiz.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-               // startQuiz();
-
-                Intent intent = new Intent(MainActivity.this, QuizActivity.class);
-                startActivity(intent);
+               startQuiz();
             }
         });
     }
-//    private void startQuiz() {
-//
-//        Intent intent = new Intent(MainActivity.this, QuizActivity.class);
-//        startActivity(intent);
-//    }
+    private void startQuiz() {
+        Intent intent = new Intent(MainActivity.this, QuizActivity.class);
+        startActivityForResult(intent, REQUEST_CODE_QUIZ);
+    }
 }
